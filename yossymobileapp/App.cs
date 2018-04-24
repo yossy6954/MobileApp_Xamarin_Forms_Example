@@ -2,6 +2,7 @@
 
 using Xamarin.Forms;
 using System.Threading.Tasks;
+using SimpleInjector;
 
 namespace yossymobileapp
 {
@@ -11,6 +12,8 @@ namespace yossymobileapp
 
     public class App : Application
 	{
+        public static Container DIContainer;
+
         public static IAuthenticate Authenticator { get; private set; }
 
         public static void Init(IAuthenticate authenticator) {

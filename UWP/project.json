@@ -1,11 +1,13 @@
-{
+﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
     "Microsoft.Azure.Mobile.Client": "4.0.1",
+    "Microsoft.Identity.Client": "1.1.2-preview0008",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
+    "SimpleInjector": "4.2.1",
     "Xamarin.Forms": "2.3.4.247"
   },
   "frameworks": {
-    "uap10.0": {}
+    "uap10.0.10586": {}
   },
   "runtimes": {
     "win10-arm": {},
