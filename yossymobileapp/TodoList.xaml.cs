@@ -186,7 +186,7 @@ namespace yossymobileapp
 
             var authorizationService = App.DIContainer.GetInstance<IAuthorizationService>();
             try {
-                await authorizationService.AcquireTokenAsync("");
+                await authorizationService.AcquireTokenAsync();
             } catch(Exception ex) {
                 Debug.WriteLine($"Authorization Failed. {ex.Message}");
             }

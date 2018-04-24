@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace yossymobileapp {
     public interface IAuthorizationService {
-        Task AcquireTokenAsync(string policy);
+        Task AcquireTokenAsync();
     }
 
     public class AuthorizationService : IAuthorizationService {
@@ -34,23 +34,21 @@ namespace yossymobileapp {
         private PublicClientApplication ADB2CClient {
             get {
                 ADB2CClient_ = ADB2CClient_ ??
-                    new PublicClientApplication(ApplicationID, Authority);
+                    new PublicClientApplication(Authority, ApplicationID);
                 return ADB2CClient_;
             }
         }
 
-        public async Task AcquireTokenAsync(string policy) {
-            /*
-            AuthenticationClient_.PlatformParameters = B2CPlatformParams_.BuildPlatformParameters();
-
-            AccessToken = result.Token;
-            */
-            var result = await ADB2CClient_.AcquireTokenAsync(
+        public async Task AcquireTokenAsync() {
+            var result = await ADB2CClient.AcquireTokenAsync(
                 Scopes,
                 string.Empty,
-                UIBehavior.SelectAccount,
-                string.Empty);
-            AccessToken = result.AccessToken;
+                UiOptions.SelectAccount,
+                string.Empty,
+                null,
+                Authority,
+                SignInUpPolicy);
+            AccessToken = result.Token;
         }
 
     }

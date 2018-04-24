@@ -7,10 +7,10 @@ namespace yossymobileapp
         /// <summary>
         /// AzureB2C設定情報
         /// </summary>
-        public const string ApplicationID = "39262b82-5641-4879-9730-4e70ddb361f5";
+        public const string ApplicationID = "101abe36-adaf-4b57-9ca0-38502187511c";
         public static string[] Scopes = { ApplicationID };
-        public const string SingInUpPolicy = "B2C_1_sign_in_sign_up";
-        public const string Authority = "https://login.microsoftonline.com/pasmodevb2c.onmicrosoft.com/";
+        public const string SingInUpPolicy = "B2C_1_sign_in_up";
+        public const string Authority = "https://login.microsoftonline.com/yossyad.onmicrosoft.com/";
 
 
         // Replace strings with your Azure Mobile App endpoint.
