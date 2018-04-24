@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json.Linq;
 
 #if OFFLINE_SYNC_ENABLED
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
@@ -159,5 +160,15 @@ namespace yossymobileapp
             }
         }
 #endif
+
+        public async Task<bool> LoginAsync(string accessToken) {
+            var payload = new JObject();
+            payload["access_token"] = accessToken;
+
+            var User = await CurrentClient.LoginAsync(
+                MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory,
+                payload);
+            return true;
+        }
     }
 }

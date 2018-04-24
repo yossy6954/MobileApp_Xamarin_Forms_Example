@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 namespace yossymobileapp {
     public interface IAuthorizationService {
         Task AcquireTokenAsync();
+
+        string AccessToken {
+            get;
+        }
     }
 
     public class AuthorizationService : IAuthorizationService {
@@ -50,6 +54,5 @@ namespace yossymobileapp {
                 SignInUpPolicy);
             AccessToken = result.Token;
         }
-
     }
 }
