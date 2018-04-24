@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using Microsoft.WindowsAzure.MobileServices;
+using yossymobileapp;
 
 namespace UWP
 {
@@ -104,6 +105,15 @@ namespace UWP
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+        }
+
+        protected override void OnActivated(IActivatedEventArgs args) {
+            base.OnActivated(args);
+
+            if (args.Kind == ActivationKind.Protocol) {
+                ProtocolActivatedEventArgs protocolArgs = args as ProtocolActivatedEventArgs;
+                TodoItemManager.DefaultManager.CurrentClient.ResumeWithURL(protocolArgs.Uri);
+            }
         }
     }
 }
