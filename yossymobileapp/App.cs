@@ -12,7 +12,7 @@ namespace yossymobileapp
 
     public class App : Application
 	{
-        public static Container DIContainer;
+        public static Container DIContainer { get; private set; }
 
         public static IAuthenticate Authenticator { get; private set; }
 
@@ -22,8 +22,24 @@ namespace yossymobileapp
 
         public App ()
 		{
-			// The root page of your application
-			MainPage = new TodoList();
+            // DIコンテナセットアップ
+            DIContainer = new Container();
+
+            // AzureB2C
+            DIContainer.RegisterSingleton<IAuthorizationService>(() => {
+                return new AuthorizationService(
+                    ) {
+                    ApplicationID = Constants.ApplicationID,
+                    Scopes = Constants.Scopes,
+                    SignInUpPolicy = Constants.SingInUpPolicy,
+                    Authority = Constants.Authority
+                };
+            });
+
+            DIContainer.Verify();
+
+            // The root page of your application
+            MainPage = new TodoList();
 		}
 
 		protected override void OnStart ()
